@@ -31,6 +31,11 @@ render_map <- function (data, background = "#FFFFFF", text = "#000000", grid = "
     data$water$osm_multipolygons
   )
   
+  if (crop) {
+    roads_data <- st_crop(roads_data, bb %>% st_as_sfc %>% st_set_crs(4326))
+    water_data <- st_crop(water_data %>% st_make_valid(), bb %>% st_as_sfc %>% st_set_crs(4326))
+  }
+  
   ggplot(roads_data) +
     theme_classic() +
     theme(axis.text.y = element_text(angle = -90, hjust = .5)) +
