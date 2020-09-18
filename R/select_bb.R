@@ -50,14 +50,14 @@ draw_bounding_box <- function (start_place_name = NULL) {
           polygonOptions = F
         )
       
-      # if (start_place_name) {
-      #   start_bounds <- getbb(start_place_name)
-      #   if (start_bounds) {
-      #     m %>% fitBounds(start_bounds) 
-      #   } else {
-      #     message(paste("Couldn't find place", start_place_name))
-      #   }
-      # }
+      if (!is.null(start_place_name)) {
+        start_bounds <- getbb(start_place_name)
+        if (start_bounds) {
+          m <- m %>% fitBounds(start_bounds["x", "min"], start_bounds["y", "min"], start_bounds["x", "max"], start_bounds["y", "max"])
+        } else {
+          message(paste("Couldn't find place", start_place_name))
+        }
+      }
       
       return(m)
     })
