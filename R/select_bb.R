@@ -6,12 +6,14 @@ draw_bounding_box <- function (start_place_name = NULL) {
     leafletOutput("map"),
     HTML("<br><br>"),
     tableOutput("boundingBox"),
+    tableOutput("info"),
     actionButton("submit", "Submit", icon("paper-plane"), class = "btn btn-primary")
   )
   
   server <- function(input, output, session) {
     bb <- NULL
     output$boundingBox <- NULL
+    output$info <- NULL
     
     on_feature_change <- function (feat) {
       coords <- unlist(feat$geometry$coordinates)
@@ -22,7 +24,15 @@ draw_bounding_box <- function (start_place_name = NULL) {
       bb <<- st_bbox(poly)
       
       # Safe as list for rendering in shiny
-      output$boundingBox <- renderTable(as.data.frame(as.list(bb)))
+      bb_df <- as.data.frame(as.list(bb))
+      output$boundingBox <- renderTable(bb_df)
+      width <- bb_df$xmax - bb_df$xmin
+      height <- bb_df$ymax - bb_df$ymin
+      output$info <- renderTable(data.frame(
+        aspectRatio = width / height,
+        width = width,
+        height = height
+      ))
     }
     
     output$map <- renderLeaflet({
