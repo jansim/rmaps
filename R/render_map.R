@@ -3,8 +3,8 @@ render_map <- function (data, background = "#FFFFFF", text = "#000000", grid = "
   my_theme <- theme(
     plot.background = element_rect(fill = background),
     panel.background = element_rect(fill = background),
-    axis.text.x = element_text(color = text),
-    axis.text.y = element_text(color = text),
+    text = element_text(color = text),
+    axis.text = element_text(color = text),
     axis.line = element_line(color = text),
     
     panel.grid.major = element_line(size = 0.5, linetype = 'solid', colour = grid),
