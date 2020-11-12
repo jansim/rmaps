@@ -6,3 +6,7 @@
 /data/cache/
 /support
 /experimental
+
+*.pdf
+*.svg
+*.ps
