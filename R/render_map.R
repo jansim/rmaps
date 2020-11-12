@@ -1,4 +1,4 @@
-render_map <- function (data, background = "#FFFFFF", text = "#000000", grid = "#FFFFFF", water = "#0000FF", roads = "#000000", buildings = "#FF0000", spacing = F, crop = F) {
+render_map <- function (data, background = "#FFFFFF", text = "#000000", grid = "#FFFFFF", water = "#0000FF", roads = "#000000", buildings = "#FF0000", spacing = F, crop = F, bounding_box = NULL) {
   
   my_theme <- theme(
     plot.background = element_rect(fill = background),
@@ -14,7 +14,12 @@ render_map <- function (data, background = "#FFFFFF", text = "#000000", grid = "
     # panel.grid.minor = element_blank()
   )
   
-  bb <- data$bb
+  if (is.null(bounding_box)) {
+    bb <- data$bb  
+  } else {
+    bb <- bounding_box
+  }
+  
   limits <- list(
     x = c(bb$xmin, bb$xmax),
     y = c(bb$ymin, bb$ymax)
