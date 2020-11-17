@@ -1,11 +1,24 @@
-render_map <- function (data, background = "#FFFFFF", text = "#000000", grid = "#FFFFFF", water = "#0000FF", roads = "#000000", buildings = "#FF0000", spacing = F, crop = F, bounding_box = NULL) {
+render_map <- function (
+  data,
+  background = "#FFFFFF",
+  text = "#000000",
+  grid = "#FFFFFF",
+  water = "#0000FF",
+  roads = "#000000",
+  buildings = "#FF0000",
+  spacing = F,
+  crop = F,
+  bounding_box = NULL,
+  linesize = .5,
+  textsize = 10
+) {
   
   my_theme <- theme(
     plot.background = element_rect(fill = background),
     panel.background = element_rect(fill = background),
-    text = element_text(color = text),
-    axis.text = element_text(color = text),
-    axis.line = element_line(color = text),
+    text = element_text(color = text, size = textsize),
+    axis.text = element_text(color = text, size = textsize),
+    axis.line = element_line(color = text, size = linesize),
     
     panel.grid.major = element_line(size = 0.5, linetype = 'solid', colour = grid),
     panel.grid.minor = element_line(size = 0.25, linetype = 'solid', colour = grid)
@@ -45,7 +58,7 @@ render_map <- function (data, background = "#FFFFFF", text = "#000000", grid = "
     theme_classic() +
     theme(axis.text.y = element_text(angle = -90, hjust = .5)) +
     geom_sf(data = water_data, inherit.aes = F, fill = water, color = water) +
-    geom_sf(data = roads_data, color = roads) +
+    geom_sf(data = roads_data, color = roads, size = linesize) +
     coord_sf(xlim = limits$x, ylim = limits$y, expand = F) +
     
     my_theme
