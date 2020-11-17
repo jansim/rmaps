@@ -32,6 +32,7 @@ render_map <- function (
   } else {
     bb <- bounding_box
   }
+  bb_sf <- bb %>% st_as_sfc %>% st_set_crs(4326)
   
   limits <- list(
     x = c(bb$xmin, bb$xmax),
@@ -48,10 +49,17 @@ render_map <- function (
     data$water$osm_polygons,
     data$water$osm_multipolygons
   )
+  if (!is.null(data$coast) && !is.null(data$coast$osm_lines)) {
+    sea_polygon <- coastline_to_polygon(data$coast, bbox = bb_sf, type = "sea")
+    water_data <- bind_rows(
+      water_data,
+      st_sf(geometry = sea_polygon)
+    )
+  }
   
   if (crop) {
-    roads_data <- st_crop(roads_data, bb %>% st_as_sfc %>% st_set_crs(4326))
-    water_data <- st_crop(water_data %>% st_make_valid(), bb %>% st_as_sfc %>% st_set_crs(4326))
+    roads_data <- st_crop(roads_data, bb_sf)
+    water_data <- st_crop(water_data %>% st_make_valid(), bb_sf)
   }
   
   ggplot(roads_data) +
