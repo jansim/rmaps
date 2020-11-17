@@ -11,4 +11,5 @@
 *.svg
 *.ps
 
+/temp
 /private
