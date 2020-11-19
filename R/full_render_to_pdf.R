@@ -1,4 +1,11 @@
 full_render_to_pdf <- function (map_data, name, filename = name, filepath = paste0("renders/", filename, ".pdf"), points_to_highlight = NULL) {
+  # For the final print, some extra padding has to be added to the document (all in cm)
+  print_extra_padding <- .3
+  width <- 59.4
+  height <- 84.1
+  print_width <- width + print_extra_padding * 2
+  print_height <- height + print_extra_padding * 2
+  
   # Render the map
   map <- render_map(
     map_data,
@@ -9,7 +16,13 @@ full_render_to_pdf <- function (map_data, name, filename = name, filepath = past
     textsize = 20
   ) +
     theme(
-      plot.margin = margin(t = 5, r = 5, b = 4, l = 4.5, unit = "cm"),
+      plot.margin = margin(
+        t = 5 + print_extra_padding,
+        r = 5 + print_extra_padding,
+        b = 4 + print_extra_padding,
+        l = 4.5 + print_extra_padding,
+        unit = "cm"
+      ),
       axis.text = element_text(size = 25, color = "#14213d"),
       plot.caption = element_text(size = 25, color = "#14213d", vjust = 25 / 2)
     ) +
@@ -34,9 +47,9 @@ full_render_to_pdf <- function (map_data, name, filename = name, filepath = past
   ggsave(
     filename = filepath,
     plot = map,
-    width = 23.39,
-    height = 33.11,
-    units = "in",
-    limitsize = F
+    width = print_width,
+    height = print_height,
+    units = "cm",
+    limitsize = F,
   )
 }
