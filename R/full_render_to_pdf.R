@@ -51,5 +51,8 @@ full_render_to_pdf <- function (map_data, name, filename = name, filepath = past
     height = print_height,
     units = "cm",
     limitsize = F,
+    device = "pdf",
+    colormodel = "cmyk"
   )
+  embedFonts(file = filepath)
 }
