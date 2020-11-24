@@ -3,7 +3,7 @@
 
 ![Mockup of rendered map on the wall.](./example.jpg)
 
-Collection of R functions to render minimal maps using `R`.
+Collection of R functions to render minimal maps using `ggplot`.
 
 # Getting Started
 
@@ -21,6 +21,7 @@ source("load.R")
 
 # Download mapdata
 if (!file.exists(get_cache_path("amsterdam_example", type = "boundingbox"))) {
+  # Example bounding box of central Amsterdam
   boundingbox <- st_bbox(c(xmin = 4.861836, ymin = 52.340088, xmax = 4.934535, ymax = 52.401469))
   
   # This will download the data and automatically write it into a cache file

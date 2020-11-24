@@ -17,7 +17,7 @@ Collection of R functions to render minimal maps using `ggplot`.
 This project is intentionally not a R package and thus cannot be installed. To use this project, clone the repository and run `renv::install()` to install necessary packages / dependencies (if you do not have `rev`  installed yet, you might have to run `install.packages("renv")` first and restart your R session). 
 To quickly render a map, simply run the following snippet of code with the working directory set to this repository.
 
-```{r fig.height=7, fig.width=4, dpi=300, message=FALSE, warning=FALSE}
+```{r fig.height=8, fig.width=5, dpi=300, message=FALSE, warning=FALSE}
 # This will load all included functions & packages
 source("load.R")
 
