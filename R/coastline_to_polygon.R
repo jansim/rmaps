@@ -1,6 +1,3 @@
-library(purrr)
-library(sf)
-
 # This is heavily based on the code by @richardbeare on Github
 # https://github.com/richardbeare/osmplotr/blob/d521c3cebb8c50994915e45737b5472af1025254/R/sf_land.R
 
@@ -15,11 +12,11 @@ samedirection <- function(poly, lines) {
 
 #' Determin which polygons intersect, compute those intersections, return them along with the isolated ones
 #'
-#' @param polygons 
+#' @param polygons
 #' Complex because we don't want to produce nothing at the end. Thus can't chuck all the pairs in.
 #' Only option I can come up with is to perform an intersection, then check. Heuristics would probably
 #' make things faster, like starting with bigger polygons. May happen by default. Could also optimise
-#' a bit by performing graph-clustering first, then doing this within each cluster, but I suspect that 
+#' a bit by performing graph-clustering first, then doing this within each cluster, but I suspect that
 #' multiple clusters are rare, due to the way the bounding box is usually selected.
 #' @return the land polygons
 #' @export
@@ -39,7 +36,7 @@ doIntersect <- function(polygons) {
     pairA <- which.max(iil > 1)
     pairB <- ii[[pairA]]
     pairB <- pairB[which.max(pairB != pairA)]
-    
+
     tempPolys <- finalP[-c(pairA, pairB)]
     ip <- st_intersection(finalP[pairA], finalP[pairB])
     finalP <- c(tempPolys, ip)
@@ -112,10 +109,10 @@ coastline_to_polygon <- function(osmd, bbox, type = "sea") {
       same <- purrr::imap_lgl(k, ~samedirection(polysM[.y], m1clipped[.x]))
       landpolys <- polys[!same]
       seapolys <- polys[same]
-      
+
       land_intersect <- doIntersect(landpolys)
-      
-      
+
+
       # figure out which polygons intersect, and take the intersection of them
       if (type == "sea") {
         # invert the land polygon to get the sea

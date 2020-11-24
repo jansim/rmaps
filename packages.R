@@ -1,5 +1,6 @@
 library(tidyverse)
 library(osmdata)
+library(purrr)
 library(sf)
 library(ggmap)
 
