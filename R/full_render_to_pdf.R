@@ -1,3 +1,14 @@
+#' Convenience function to render a map and create a poster size PDF for printing
+#'
+#' @param map_data Map data, loaded via load_mapdata
+#' @param name basic name used to generate filename & path
+#' @param filename filename of the resulting PDF, generated from name
+#' @param filepath full filepath of the resulting PDF, generated from filename
+#' @param points_to_highlight opt. dataframe of points to highlight needs the columsn long and lat
+#'
+#' @return nothing
+#' @export
+#'
 full_render_to_pdf <- function (map_data, name, filename = name, filepath = paste0("renders/", filename, ".pdf"), points_to_highlight = NULL) {
   # For the final print, some extra padding has to be added to the document (all in cm)
   print_extra_padding <- .3

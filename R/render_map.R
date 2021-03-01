@@ -1,3 +1,22 @@
+#' Render a map in ggplot
+#'
+#' @param data map data as loaded by load_mapdata()
+#' @param background color of the background of the plot
+#' @param text color of text in the plot
+#' @param grid color of the background grid in the plot
+#' @param water color of bodies of water e.g. oceans and rivers
+#' @param roads color of roads
+#' @param buildings color of building footprints
+#' @param spacing TRUE / FALSE indicating whether spacing / padding should be added
+#' @param crop should the map data be cropped to the provided bounding box
+#' @param bounding_box bounding box of the visible area in the plot
+#' @param linesize width / size of lines in the plot
+#' @param textsize width / size of text in the plot
+#'
+#' @return a ggplot
+#' @export
+#'
+#' @examples
 render_map <- function (
   data,
   background = "#FFFFFF",

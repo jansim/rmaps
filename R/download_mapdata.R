@@ -1,3 +1,15 @@
+#' Download map data for a certain area, as indicated by a bounding box
+#'
+#' @param data_id string id to save the data under
+#' @param boundingbox bounding box of the area to download
+#' @param water download data of water bodies
+#' @param buildings download data of buildings (can be large for cities) 
+#' @param roads download road data
+#' @param coast download coastline data (to render e.g. oceans)
+#'
+#' @return
+#' @export
+#'
 download_mapdata <- function (data_id, boundingbox, water = T, buildings = F, roads = T, coast = T) {
   
   # Save bounding box as well

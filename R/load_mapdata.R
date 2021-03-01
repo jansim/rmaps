@@ -1,3 +1,14 @@
+#' Load mapdata from the cache
+#'
+#' @param data_id id the map data is saved under
+#' @param water Should water data be loaded (NULL = load if file exists)
+#' @param buildings Should buildings data be loaded (NULL = load if file exists)
+#' @param roads Should road data be loaded (NULL = load if file exists)
+#' @param coast Should coastline data be loaded (NULL = load if file exists)
+#'
+#' @return loaded map data
+#' @export
+#'
 load_mapdata <- function (data_id, water = NULL, buildings = NULL, roads = NULL, coast = NULL) {
 
   output <- list(

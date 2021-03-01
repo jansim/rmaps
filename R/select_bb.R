@@ -1,5 +1,10 @@
-pacman::p_load(shiny, leaflet, leaflet.extras, sf, osmdata)
-
+#' Draw a bounding box on an interactive map in a webbrowser.
+#'
+#' @param start_place_name optional address of a place to initially center the map on
+#'
+#' @return selected bounding box
+#' @export
+#
 draw_bounding_box <- function (start_place_name = NULL) {
   ui <- fluidPage(
     "Use the square button at the top-right to draw a rectangle bounding box, press 'Submit' to return the value.",

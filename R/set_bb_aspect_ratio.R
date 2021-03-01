@@ -1,3 +1,11 @@
+#' Resize a bounding-box to have a certain aspect ratio
+#'
+#' @param bb the original bounding box
+#' @param target_ar target aspect ratio
+#'
+#' @return a bounding box with the aspect ratio target_ar
+#' @export
+#'
 set_bb_aspect_ratio <- function (bb, target_ar) {
   raw_w <- bb$xmax - bb$xmin
   raw_h <- bb$ymax - bb$ymin

@@ -1,3 +1,10 @@
+#' Get the aspect ratio of a bounding box
+#'
+#' @param bb bounding box
+#'
+#' @return the aspect ratio as a number
+#' @export
+#'
 get_bb_aspect_ratio <- function (bb) {
   # Get width and height in actual units
   w <- st_sfc(st_point(c(bb$xmin, bb$ymin)), st_point(c(bb$xmax, bb$ymin)), crs = 4326) %>% st_distance() %>% .[1,2]
