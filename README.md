@@ -1,7 +1,8 @@
 
 # 🗺️ rmaps: Minimal maps generated with R and ggplot
 
-![Mockup of rendered map on the wall.](./example.jpg)
+[![Mockup of rendered map on the
+wall.](./example.jpg)](./README_files/example.pdf)
 
 Collection of R functions to render minimal maps using `ggplot`.
 
@@ -35,3 +36,20 @@ snippet of code with the working directory set to this repository.
     render_map(mapdata)
 
 ![](README_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
+
+## 🖨️ Print-ready PDFs
+
+There is also a convenience function to render a full pdf ready for
+printing in DIN A1 size. If you want to create your own poster it might
+be a good start to just copy and adjust this function to your liking (or
+just use it as is!).
+
+    # Generate pdf for printing
+    full_render_to_pdf(
+      mapdata,
+      name = "Amsterdam, Noord-Holland, Netherlands",
+      filename = "example.pdf",
+      dir = "README_files"
+    )
+
+The resulting PDF can be found [here](./README_files/example.pdf).
