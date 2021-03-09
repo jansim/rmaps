@@ -7,9 +7,10 @@
 /support
 /experimental
 
-*.pdf
-*.svg
-*.ps
+renders/**/*.pdf
+renders/**/*.svg
+renders/**/*.ps
+renders/**/*.jpg
 
 /temp
 /private
